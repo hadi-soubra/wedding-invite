@@ -5,11 +5,15 @@ import { useRef, useEffect, useState } from 'react'
 interface PhotoSectionProps {
   objectPosition?: string
   height?: number
+  image?: string
+  bottomColor?: string
 }
 
 export default function PhotoSection({
   objectPosition = 'object-center',
   height = 394,
+  image = '/couple.jpg',
+  bottomColor = '#efefef',
 }: PhotoSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [parallaxY, setParallaxY] = useState(0)
@@ -36,7 +40,7 @@ export default function PhotoSection({
       <div
         className={`absolute inset-0 bg-center bg-cover will-change-transform ${objectPosition}`}
         style={{
-          backgroundImage: 'url(/couple.jpg)',
+          backgroundImage: `url(${image})`,
           height: 'calc(100% + 100px)',
           top: '-50px',
           transform: `translate3d(0, ${parallaxY}px, 0)`,
@@ -49,7 +53,7 @@ export default function PhotoSection({
       />
       <div
         className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #efefef, transparent)' }}
+        style={{ background: `linear-gradient(to top, ${bottomColor}, transparent)` }}
       />
     </div>
   )

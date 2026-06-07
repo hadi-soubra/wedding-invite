@@ -17,11 +17,11 @@ export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollP
     <div className="w-[375px] mx-auto bg-transparent">
       <PhotoSection objectPosition="object-top" />
       <InvitationCard />
-      <PhotoSection objectPosition="object-center" />
+      <PhotoSection objectPosition="object-center" image="/couple2.jpg" />
       <EventCard type="ceremony" />
-      <PhotoSection objectPosition="object-center" />
+      <PhotoSection objectPosition="object-center" image="/couple3.jpg" />
       <GiftCard />
-      <PhotoSection objectPosition="object-top" />
+      <PhotoSection objectPosition="object-top" image="/couple4.jpg" bottomColor="#000000" />
       <RSVPSection guest={guest} />
       <MusicButton muted={muted} onToggle={onToggleMute} />
     </div>
