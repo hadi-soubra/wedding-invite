@@ -5,6 +5,7 @@ import EventCard from './EventCard'
 import GiftCard from './GiftCard'
 import RSVPSection from './RSVPSection'
 import MusicButton from './MusicButton'
+import PlugSection from './PlugSection'
 
 interface Page2ScrollProps {
   guest: Guest
@@ -23,6 +24,7 @@ export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollP
       <GiftCard />
       <PhotoSection image="/couple4.jpg" bottomColor="#000000" />
       <RSVPSection guest={guest} />
+      <PlugSection />
       <MusicButton muted={muted} onToggle={onToggleMute} />
     </div>
   )
