@@ -15,9 +15,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 // ────────────────────────────────────────────
 // ADD YOUR GUESTS HERE
 const guests = [
-  { name: 'George Khoury', name_arabic: 'جورج خوري', phone: '+961 71 000 001', party_size: 3 },
-  { name: 'Rania Haddad', name_arabic: 'رانيا حداد', phone: '+961 71 000 002', party_size: 2 },
-  // add more...
+  { name: 'Test Guest', name_arabic: 'ضيف تجريبي', phone: '+961 71 000 000', party_size: 2 },
 ]
 // ────────────────────────────────────────────
 

@@ -8,9 +8,11 @@ import MusicButton from './MusicButton'
 
 interface Page2ScrollProps {
   guest: Guest
+  muted: boolean
+  onToggleMute: () => void
 }
 
-export default function Page2Scroll({ guest }: Page2ScrollProps) {
+export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollProps) {
   return (
     <div className="w-[375px] mx-auto bg-transparent">
       <PhotoSection objectPosition="object-top" />
@@ -21,7 +23,7 @@ export default function Page2Scroll({ guest }: Page2ScrollProps) {
       <GiftCard />
       <PhotoSection objectPosition="object-top" />
       <RSVPSection guest={guest} />
-      <MusicButton />
+      <MusicButton muted={muted} onToggle={onToggleMute} />
     </div>
   )
 }
