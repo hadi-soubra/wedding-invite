@@ -16,7 +16,7 @@ export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollP
   return (
     <div className="w-[375px] mx-auto bg-transparent">
       <PhotoSection objectPosition="object-top" />
-      <InvitationCard guest={guest} />
+      <InvitationCard />
       <PhotoSection objectPosition="object-center" />
       <EventCard type="ceremony" />
       <PhotoSection objectPosition="object-center" />

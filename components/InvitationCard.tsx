@@ -3,16 +3,7 @@
 import { useEffect, useState } from 'react'
 import ContentCard from './ContentCard'
 
-interface Guest {
-  name: string
-  name_arabic: string | null
-}
-
-interface InvitationCardProps {
-  guest: Guest
-}
-
-export default function InvitationCard({ guest }: InvitationCardProps) {
+export default function InvitationCard() {
   const [days, setDays] = useState(0)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
@@ -50,7 +41,7 @@ export default function InvitationCard({ guest }: InvitationCardProps) {
         <div className="grid grid-cols-2 gap-8 mb-2">
           <div>
             <p className="text-base text-gray-500">ابنتنا</p>
-            <p className="text-xl font-bold">{guest.name_arabic ?? guest.name}</p>
+            <p className="text-xl font-bold">سالي</p>
           </div>
           <div>
             <p className="text-base text-gray-500">ابننا</p>

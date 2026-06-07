@@ -31,20 +31,22 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
   }
 
   return (
-    <div className={pageState === 'cover' ? 'h-screen overflow-hidden' : ''}>
+    <div>
       <audio ref={audioRef} loop src="/music.mp3" />
 
+      {/* Cover — fixed overlay, fades out on open */}
       <div
-        className={`transition-opacity duration-1000 ease-in-out ${
-          pageState === 'cover' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
+        className={`fixed inset-0 z-50 transition-opacity duration-1000 ease-in-out ${
+          pageState === 'cover' ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <Page1Cover onOpen={handleOpen} />
       </div>
 
+      {/* Scroll content — always rendered but only visible after open */}
       <div
         className={`transition-opacity duration-1000 ease-in-out ${
-          pageState === 'open' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
+          pageState === 'open' ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <Page2Scroll guest={guest} muted={muted} onToggleMute={toggleMute} />
