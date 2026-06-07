@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Guest } from '@/types/guest'
 import Page1Cover from './Page1Cover'
 import Page2Scroll from './Page2Scroll'
@@ -11,8 +11,15 @@ interface InviteWrapperProps {
 
 export default function InviteWrapper({ guest }: InviteWrapperProps) {
   const [pageState, setPageState] = useState<'cover' | 'open'>('cover')
+  const [visible, setVisible] = useState(false)
   const [muted, setMuted] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
+
+  useEffect(() => {
+    if (pageState === 'open') {
+      requestAnimationFrame(() => setVisible(true))
+    }
+  }, [pageState])
 
   const handleOpen = () => {
     setPageState('open')
@@ -31,26 +38,19 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
   }
 
   return (
-    <div>
+    <>
       <audio ref={audioRef} loop src="/music.mp3" />
 
-      {/* Cover — fixed overlay, fades out on open */}
-      <div
-        className={`fixed inset-0 z-50 transition-opacity duration-1000 ease-in-out ${
-          pageState === 'cover' ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <Page1Cover onOpen={handleOpen} />
-      </div>
+      {pageState === 'cover' && <Page1Cover onOpen={handleOpen} />}
 
-      {/* Scroll content — always rendered but only visible after open */}
-      <div
-        className={`transition-opacity duration-1000 ease-in-out ${
-          pageState === 'open' ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <Page2Scroll guest={guest} muted={muted} onToggleMute={toggleMute} />
-      </div>
-    </div>
+      {pageState === 'open' && (
+        <div
+          className="transition-opacity duration-1000 ease-in-out"
+          style={{ opacity: visible ? 1 : 0 }}
+        >
+          <Page2Scroll guest={guest} muted={muted} onToggleMute={toggleMute} />
+        </div>
+      )}
+    </>
   )
 }
