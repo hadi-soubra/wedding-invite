@@ -9,30 +9,38 @@ interface InviteWrapperProps {
   guest: Guest
 }
 
+type PageState = 'cover' | 'transitioning' | 'open'
+
 export default function InviteWrapper({ guest }: InviteWrapperProps) {
-  const [pageState, setPageState] = useState<'cover' | 'open'>('cover')
-  const [visible, setVisible] = useState(false)
+  const [pageState, setPageState] = useState<PageState>('cover')
+  const [scrollVisible, setScrollVisible] = useState(false)
   const [muted, setMuted] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
-    if (pageState === 'open') {
-      document.body.style.overflow = ''
-      requestAnimationFrame(() => setVisible(true))
-    } else {
+    if (pageState === 'cover' || pageState === 'transitioning') {
       document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
     }
     return () => { document.body.style.overflow = '' }
   }, [pageState])
 
   const handleOpen = () => {
     window.scrollTo(0, 0)
-    setPageState('open')
+    setPageState('transitioning')
+
     const audio = audioRef.current
     if (audio) {
       audio.volume = 0.7
       audio.play().catch(() => {})
     }
+
+    // Phase 2 (300ms): start fading in scroll page
+    setTimeout(() => setScrollVisible(true), 300)
+
+    // Phase 3 (900ms): transition complete, unmount cover
+    setTimeout(() => setPageState('open'), 900)
   }
 
   const toggleMute = () => {
@@ -46,12 +54,28 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
     <>
       <audio ref={audioRef} loop src="/music.mp3" />
 
-      {pageState === 'cover' && <Page1Cover onOpen={handleOpen} />}
-
-      {pageState === 'open' && (
+      {/* Cover — fixed overlay, fades out during transition */}
+      {(pageState === 'cover' || pageState === 'transitioning') && (
         <div
-          className="transition-opacity duration-1000 ease-in-out"
-          style={{ opacity: visible ? 1 : 0 }}
+          className="fixed inset-0 z-50 transition-opacity ease-in-out"
+          style={{
+            opacity: pageState === 'transitioning' ? 0 : 1,
+            transitionDuration: '600ms',
+            transitionDelay: pageState === 'transitioning' ? '300ms' : '0ms',
+          }}
+        >
+          <Page1Cover onOpen={handleOpen} isTransitioning={pageState === 'transitioning'} />
+        </div>
+      )}
+
+      {/* Invitation — fades in as cover fades out */}
+      {(pageState === 'transitioning' || pageState === 'open') && (
+        <div
+          className="transition-opacity ease-in-out"
+          style={{
+            opacity: scrollVisible ? 1 : 0,
+            transitionDuration: '700ms',
+          }}
         >
           <Page2Scroll guest={guest} muted={muted} onToggleMute={toggleMute} />
         </div>

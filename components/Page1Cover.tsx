@@ -2,9 +2,10 @@
 
 interface Page1CoverProps {
   onOpen: () => void
+  isTransitioning?: boolean
 }
 
-export default function Page1Cover({ onOpen }: Page1CoverProps) {
+export default function Page1Cover({ onOpen, isTransitioning = false }: Page1CoverProps) {
   return (
     <div
       className="relative w-full h-screen flex items-center justify-center overflow-hidden"
@@ -14,9 +15,16 @@ export default function Page1Cover({ onOpen }: Page1CoverProps) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="absolute inset-0 bg-black/50" />
+      <div
+        className="absolute inset-0 bg-black/50 transition-opacity duration-500"
+        style={{ opacity: isTransitioning ? 0 : 1 }}
+      />
 
-      <div className="relative z-10 flex flex-col items-center gap-6 text-white text-center px-8" dir="rtl">
+      <div
+        className="relative z-10 flex flex-col items-center gap-6 text-white text-center px-8 transition-opacity duration-500"
+        style={{ opacity: isTransitioning ? 0 : 1 }}
+        dir="rtl"
+      >
         <p
           className="text-3xl font-bold tracking-widest"
           style={{ fontFamily: 'var(--font-amiri)' }}
