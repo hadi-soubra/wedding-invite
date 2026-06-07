@@ -22,6 +22,7 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
   }, [pageState])
 
   const handleOpen = () => {
+    window.scrollTo(0, 0)
     setPageState('open')
     const audio = audioRef.current
     if (audio) {
