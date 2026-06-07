@@ -146,9 +146,6 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
               {submitting ? 'Sending…' : 'RSVP'}
             </button>
 
-            <p className="text-xs text-white/40 text-center">
-              Please note that this will be an adult-party only
-            </p>
           </div>
         )}
       </div>

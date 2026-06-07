@@ -6,12 +6,14 @@ import { Heart } from 'lucide-react'
 export default function MusicButton() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [playing, setPlaying] = useState(false)
-  const [exists, setExists] = useState(false)
 
   useEffect(() => {
-    fetch('/music.mp3', { method: 'HEAD' })
-      .then((r) => { if (r.ok) setExists(true) })
-      .catch(() => {})
+    const audio = audioRef.current
+    if (!audio) return
+    audio.volume = 0.7
+    audio.play().then(() => setPlaying(true)).catch(() => {
+      // autoplay blocked by browser — user must interact first
+    })
   }, [])
 
   const toggleMusic = () => {
@@ -24,8 +26,6 @@ export default function MusicButton() {
     }
     setPlaying(!playing)
   }
-
-  if (!exists) return null
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

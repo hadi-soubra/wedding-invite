@@ -9,10 +9,10 @@ const events = {
   ceremony: {
     title: 'Wedding Ceremony',
     time: '07:00 PM',
-    timezone: 'BEIRUT GMT +2',
-    venue: 'St. George Church',
+    timezone: 'BEIRUT TIME',
+    venue: "Lo'r Venue",
     city: 'Rmeish',
-    map: 'https://maps.app.goo.gl/xPWWGYYCCfBu2sbYA',
+    map: 'https://maps.app.goo.gl/vrNF2sBsgkMZ8xjb9?g_st=iw',
   },
   party: {
     title: 'Wedding Party',

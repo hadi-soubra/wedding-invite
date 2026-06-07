@@ -13,7 +13,7 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
   const [pageState, setPageState] = useState<'cover' | 'open'>('cover')
 
   return (
-    <div>
+    <div className={pageState === 'cover' ? 'h-screen overflow-hidden' : ''}>
       <div
         className={`transition-opacity duration-1000 ease-in-out ${
           pageState === 'cover' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'

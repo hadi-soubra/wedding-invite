@@ -48,15 +48,17 @@ export default function InvitationCard({ guest }: InvitationCardProps) {
         <p className="text-xl my-4">بدعوتكم لحضور حفل زفاف</p>
 
         <div className="grid grid-cols-2 gap-8 mb-2">
-          <p className="text-base text-gray-500">ابنتنا</p>
-          <p className="text-base text-gray-500">ابنتهم</p>
+          <div>
+            <p className="text-base text-gray-500">ابنتنا</p>
+            <p className="text-xl font-bold">{guest.name_arabic ?? guest.name}</p>
+          </div>
+          <div>
+            <p className="text-base text-gray-500">ابننا</p>
+            <p className="text-xl font-bold">علي الهادي</p>
+          </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <p className="text-xl font-bold">{guest.name_arabic ?? guest.name}</p>
-          <p className="text-base text-gray-500">إلى</p>
-          <p className="text-xl font-bold">علي الاري</p>
-        </div>
+        <div className="mb-8" />
 
         <p className="text-lg mt-8">وذلك بمشيئة الله يوم السبت</p>
 
@@ -73,7 +75,7 @@ export default function InvitationCard({ guest }: InvitationCardProps) {
           style={{ fontFamily: 'var(--font-allura)', color: '#373430' }}
           dir="ltr"
         >
-          Sara &amp; Ali
+          Sally &amp; Ali
         </p>
 
         <div className="flex gap-4 justify-center" dir="ltr">

@@ -4,7 +4,6 @@ import InvitationCard from './InvitationCard'
 import EventCard from './EventCard'
 import GiftCard from './GiftCard'
 import RSVPSection from './RSVPSection'
-import FooterSection from './FooterSection'
 import MusicButton from './MusicButton'
 
 interface Page2ScrollProps {
@@ -18,13 +17,10 @@ export default function Page2Scroll({ guest }: Page2ScrollProps) {
       <InvitationCard guest={guest} />
       <PhotoSection objectPosition="object-center" />
       <EventCard type="ceremony" />
-      <PhotoSection objectPosition="object-bottom" />
-      <EventCard type="party" />
       <PhotoSection objectPosition="object-center" />
       <GiftCard />
       <PhotoSection objectPosition="object-top" />
       <RSVPSection guest={guest} />
-      <FooterSection />
       <MusicButton />
     </div>
   )
