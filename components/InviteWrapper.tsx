@@ -17,8 +17,12 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
 
   useEffect(() => {
     if (pageState === 'open') {
+      document.body.style.overflow = ''
       requestAnimationFrame(() => setVisible(true))
+    } else {
+      document.body.style.overflow = 'hidden'
     }
+    return () => { document.body.style.overflow = '' }
   }, [pageState])
 
   const handleOpen = () => {
