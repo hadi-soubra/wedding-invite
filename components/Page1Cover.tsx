@@ -39,17 +39,6 @@ export default function Page1Cover({ onOpen }: Page1CoverProps) {
 
         <div className="text-white/40 text-2xl select-none">✦</div>
 
-        <div className="w-28 h-28 rounded-full border-2 border-white/60 flex items-center justify-center">
-          <span
-            className="text-4xl text-white"
-            style={{ fontFamily: 'var(--font-allura)' }}
-          >
-            S &amp; L
-          </span>
-        </div>
-
-        <div className="text-white/40 text-2xl select-none">✦</div>
-
         <button
           onClick={onOpen}
           className="border-2 border-white px-10 py-3 text-white hover:bg-white hover:text-black transition-colors duration-300 tracking-widest text-sm"

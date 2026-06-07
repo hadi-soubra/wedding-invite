@@ -29,6 +29,9 @@ const alexBrush = Alex_Brush({
 export const metadata: Metadata = {
   title: 'Wedding Invitation',
   description: 'You are cordially invited',
+  other: {
+    'google': 'notranslate',
+  },
 }
 
 export default function RootLayout({
@@ -39,7 +42,8 @@ export default function RootLayout({
   return (
     <html
       lang="ar"
-      className={`${amiri.variable} ${allura.variable} ${cormorant.variable} ${alexBrush.variable}`}
+      translate="no"
+      className={`${amiri.variable} ${allura.variable} ${cormorant.variable} ${alexBrush.variable} notranslate`}
     >
       <body className="bg-black min-h-screen">{children}</body>
     </html>
