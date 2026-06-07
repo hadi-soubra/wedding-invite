@@ -14,7 +14,7 @@ interface Page2ScrollProps {
 
 export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollProps) {
   return (
-    <div className="w-full max-w-xl mx-auto bg-transparent">
+    <div className="w-full bg-transparent">
       <PhotoSection />
       <InvitationCard />
       <PhotoSection image="/couple2.jpg" />

@@ -14,7 +14,7 @@ export default function PhotoSection({
       <img
         src={image}
         alt=""
-        className="w-full h-auto block"
+        className="w-full h-auto block max-w-xl mx-auto"
       />
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       <div
