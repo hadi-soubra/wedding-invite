@@ -15,13 +15,13 @@ interface Page2ScrollProps {
 export default function Page2Scroll({ guest, muted, onToggleMute }: Page2ScrollProps) {
   return (
     <div className="w-full bg-transparent">
-      <PhotoSection objectPosition="object-top" />
+      <PhotoSection />
       <InvitationCard />
-      <PhotoSection objectPosition="object-center" image="/couple2.jpg" />
+      <PhotoSection image="/couple2.jpg" />
       <EventCard type="ceremony" />
-      <PhotoSection objectPosition="object-center" image="/couple3.jpg" />
+      <PhotoSection image="/couple3.jpg" />
       <GiftCard />
-      <PhotoSection objectPosition="object-top" image="/couple4.jpg" bottomColor="#000000" />
+      <PhotoSection image="/couple4.jpg" bottomColor="#000000" />
       <RSVPSection guest={guest} />
       <MusicButton muted={muted} onToggle={onToggleMute} />
     </div>
