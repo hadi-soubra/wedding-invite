@@ -18,7 +18,7 @@ export default function Page1Cover({ onOpen }: Page1CoverProps) {
 
       <div className="relative z-10 flex flex-col items-center gap-6 text-white text-center px-8" dir="rtl">
         <p
-          className="text-sm tracking-widest opacity-80"
+          className="text-3xl font-bold tracking-widest"
           style={{ fontFamily: 'var(--font-amiri)' }}
         >
           بسم الله الرحمن الرحيم
@@ -27,7 +27,7 @@ export default function Page1Cover({ onOpen }: Page1CoverProps) {
         <div className="text-white/40 text-2xl select-none">✦</div>
 
         <p
-          className="text-lg leading-loose max-w-xs text-center"
+          className="text-sm leading-loose max-w-xs text-center opacity-90"
           style={{ fontFamily: 'var(--font-amiri)' }}
         >
           ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها

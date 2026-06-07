@@ -32,20 +32,20 @@ export default function InvitationCard() {
         <p className="text-xl mb-6">بتشرف</p>
 
         <div className="grid grid-cols-2 gap-8 mb-4">
-          <p className="text-lg font-bold">الحج وجيه جمال</p>
           <p className="text-lg font-bold">السيد فريد حشوش</p>
+          <p className="text-lg font-bold">الحج وجيه جمال</p>
         </div>
 
         <p className="text-xl my-4">بدعوتكم لحضور حفل زفاف</p>
 
         <div className="grid grid-cols-2 gap-8 mb-2">
           <div>
-            <p className="text-base text-gray-500">ابنتنا</p>
-            <p className="text-xl font-bold">سالي</p>
-          </div>
-          <div>
             <p className="text-base text-gray-500">ابننا</p>
             <p className="text-xl font-bold">علي الهادي</p>
+          </div>
+          <div>
+            <p className="text-base text-gray-500">ابنتنا</p>
+            <p className="text-xl font-bold">سالي</p>
           </div>
         </div>
 
