@@ -29,20 +29,22 @@ export default function InvitationCard() {
   return (
     <ContentCard>
       <div dir="rtl" style={{ fontFamily: 'var(--font-amiri)', color: '#373430' }}>
-        <p className="text-xl mb-6">بتشرف</p>
+        <p className="text-xl mb-6">يتشرف</p>
 
-        <div className="grid grid-cols-2 gap-8 mb-4">
+        <div className="flex items-center justify-center gap-4 mb-4">
           <p className="text-lg font-bold">السيد فهد حشوش</p>
+          <p className="text-3xl" style={{ fontFamily: 'var(--font-allura)' }}>و</p>
           <p className="text-lg font-bold">الحج وجيه جمال</p>
         </div>
 
         <p className="text-xl my-4">بدعوتكم لحضور حفل زفاف</p>
 
-        <div className="grid grid-cols-2 gap-8 mb-2">
+        <div className="flex items-center justify-center gap-4 mb-2">
           <div>
             <p className="text-base text-gray-500">ابننا</p>
             <p className="text-xl font-bold">علي الهادي</p>
           </div>
+          <p className="text-3xl" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
           <div>
             <p className="text-base text-gray-500">ابنتنا</p>
             <p className="text-xl font-bold">سالي</p>
@@ -66,7 +68,7 @@ export default function InvitationCard() {
           style={{ fontFamily: 'var(--font-allura)', color: '#373430' }}
           dir="ltr"
         >
-          Sally &amp; Ali
+          Ali &amp; Sally
         </p>
 
         <div className="flex gap-4 justify-center" dir="ltr">
