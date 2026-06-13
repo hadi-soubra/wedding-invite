@@ -47,8 +47,12 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
 
         <div className="text-white/40 text-2xl select-none">✦</div>
 
-        <div className="flex flex-col items-center gap-3">
-          <div className="animate-bounce text-white/60 text-2xl select-none">↓</div>
+        <div className="flex flex-col items-center gap-2">
+          <div className="animate-bounce flex flex-col items-center text-white/40 leading-none select-none">
+            <span>↓</span>
+            <span>↓</span>
+            <span>↓</span>
+          </div>
           <button
             onClick={onOpen}
             className="border-2 border-white px-10 py-3 text-white hover:bg-white hover:text-black transition-colors duration-300 tracking-widest text-sm"
@@ -56,6 +60,11 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
           >
             فتح الدعوة
           </button>
+          <div className="animate-bounce flex flex-col items-center text-white/40 leading-none select-none">
+            <span>↓</span>
+            <span>↓</span>
+            <span>↓</span>
+          </div>
         </div>
       </div>
     </div>
