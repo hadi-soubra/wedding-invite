@@ -48,7 +48,7 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
         <div className="text-white/40 text-2xl select-none">✦</div>
 
         <div className="flex flex-col items-center gap-2">
-          <div className="animate-bounce flex flex-col items-center text-white/40 leading-none select-none">
+          <div className="animate-bounce flex flex-row items-center gap-2 text-white/40 text-xl select-none">
             <span>↓</span>
             <span>↓</span>
             <span>↓</span>
@@ -60,10 +60,10 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
           >
             فتح الدعوة
           </button>
-          <div className="animate-bounce flex flex-col items-center text-white/40 leading-none select-none">
-            <span>↓</span>
-            <span>↓</span>
-            <span>↓</span>
+          <div className="animate-bounce flex flex-row items-center gap-2 text-white/40 text-xl select-none">
+            <span>↑</span>
+            <span>↑</span>
+            <span>↑</span>
           </div>
         </div>
       </div>

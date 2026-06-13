@@ -39,15 +39,12 @@ export default function InvitationCard() {
 
         <p className="text-xl my-4">بدعوتكم لحضور حفل زفاف</p>
 
-        <div className="flex items-center justify-center gap-4 mb-2">
+        <div className="flex items-end justify-center gap-4 mb-2">
           <div>
             <p className="text-base text-gray-500">ابننا</p>
             <p className="text-xl font-bold">علي الهادي</p>
           </div>
-          <div>
-            <p className="text-base text-gray-500">  </p>
-            <p className="text-3xl" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
-          </div>
+          <p className="text-3xl pb-0.5" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
           <div>
             <p className="text-base text-gray-500">ابنتنا</p>
             <p className="text-xl font-bold">سالي</p>
