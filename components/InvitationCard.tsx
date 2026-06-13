@@ -44,7 +44,10 @@ export default function InvitationCard() {
             <p className="text-base text-gray-500">ابننا</p>
             <p className="text-xl font-bold">علي الهادي</p>
           </div>
-          <p className="text-3xl" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
+          <div>
+            <p className="text-base text-gray-500">  </p>
+            <p className="text-3xl" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
+          </div>
           <div>
             <p className="text-base text-gray-500">ابنتنا</p>
             <p className="text-xl font-bold">سالي</p>
