@@ -1,11 +1,37 @@
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { Guest } from '@/types/guest'
 import InviteWrapper from '@/components/InviteWrapper'
+import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
 
 interface PageProps {
   params: Promise<{ code: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { code } = await params
+  const { data } = await getSupabaseAdmin()
+    .from('guests')
+    .select('name')
+    .eq('code', code)
+    .single()
+
+  const title = "Ali & Sally's Wedding"
+  const description = data?.name
+    ? `${data.name}, you are cordially invited — please RSVP`
+    : 'You are cordially invited — please RSVP'
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: ['/couple.jpg'],
+      type: 'website',
+    },
+  }
 }
 
 export default async function InvitePage({ params }: PageProps) {

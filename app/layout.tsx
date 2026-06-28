@@ -27,8 +27,15 @@ const alexBrush = Alex_Brush({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://ali-and-sally.com'),
   title: 'Wedding Invitation',
   description: 'You are cordially invited',
+  openGraph: {
+    title: "Ali & Sally's Wedding",
+    description: 'You are cordially invited — please RSVP',
+    images: ['/couple.jpg'],
+    type: 'website',
+  },
   other: {
     'google': 'notranslate',
   },
