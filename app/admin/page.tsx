@@ -32,6 +32,7 @@ export default function AdminPage() {
   const declined = guests.filter((g) => g.status === 'declined')
   const pending = guests.filter((g) => g.status === 'pending')
   const totalPeople = attending.reduce((sum, g) => sum + (g.actual_size ?? 0), 0)
+  const totalInvited = guests.reduce((sum, g) => sum + (g.party_size ?? 0), 0)
 
   const statusBadge = (status: Guest['status']) => {
     if (status === 'attending') return <span className="text-green-600 font-medium">✅ Attending</span>
@@ -49,7 +50,11 @@ export default function AdminPage() {
         {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
         {loading && <p className="text-gray-400 text-sm mb-4">Loading…</p>}
 
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white rounded shadow p-4 text-center">
+            <p className="text-2xl font-bold text-gray-800">{guests.length}</p>
+            <p className="text-sm text-gray-500">👥 Invites — {totalInvited} people</p>
+          </div>
           <div className="bg-white rounded shadow p-4 text-center">
             <p className="text-2xl font-bold text-green-600">{attending.length}</p>
             <p className="text-sm text-gray-500">✅ Attending — {totalPeople} people</p>

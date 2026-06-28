@@ -15,15 +15,22 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
   const [actualSize, setActualSize] = useState(1)
   const [message, setMessage] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
   const hasResponded = guest.status !== 'pending' && !showForm
 
+  const overLimit = attending === 'yes' && actualSize > guest.party_size
+
   const submitRSVP = async () => {
     if (!attending) return
+    if (overLimit) {
+      setError(`You can bring up to ${guest.party_size} guest${guest.party_size > 1 ? 's' : ''}.`)
+      return
+    }
+    setError('')
     setSubmitting(true)
     try {
-      await fetch('/api/rsvp', {
+      const res = await fetch('/api/rsvp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -33,13 +40,17 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
           note: message,
         }),
       })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        setError(data.error || 'Something went wrong. Please try again.')
+        return
+      }
       setGuest({
         ...guest,
         status: attending === 'yes' ? 'attending' : 'declined',
         actual_size: attending === 'yes' ? actualSize : 0,
       })
       setShowForm(false)
-      setSubmitted(true)
     } finally {
       setSubmitting(false)
     }
@@ -55,7 +66,7 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
           Be Our Guest
         </p>
 
-        {hasResponded && !submitted ? (
+        {hasResponded ? (
           <div className="space-y-4">
             <p style={{ fontFamily: 'var(--font-cormorant)' }} className="text-lg">
               Thank you for your response!
@@ -117,9 +128,15 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
                   min={1}
                   max={guest.party_size}
                   value={actualSize}
-                  onChange={(e) => setActualSize(Number(e.target.value))}
+                  onChange={(e) => {
+                    setActualSize(Number(e.target.value))
+                    setError('')
+                  }}
                   className="w-full bg-slate-600/50 border-0 text-white rounded px-4 py-3"
                 />
+                <span className="text-xs text-white/40">
+                  You are invited for up to {guest.party_size} guest{guest.party_size > 1 ? 's' : ''}.
+                </span>
               </div>
             )}
 
@@ -138,12 +155,18 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
               <span className="text-xs text-white/40">{message.length} / 120</span>
             </div>
 
+            {error && (
+              <p className="text-red-400 text-sm text-center" style={{ fontFamily: 'var(--font-cormorant)' }}>
+                {error}
+              </p>
+            )}
+
             <button
               onClick={submitRSVP}
-              disabled={!attending || submitting}
+              disabled={!attending || submitting || overLimit}
               className="w-full bg-slate-600 py-3 text-white uppercase tracking-widest text-sm disabled:opacity-40 hover:bg-slate-500 transition-colors"
             >
-              {submitting ? 'Sending…' : 'RSVP'}
+              {submitting ? 'Sending…' : 'Send Response'}
             </button>
 
           </div>

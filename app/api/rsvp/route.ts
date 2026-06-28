@@ -16,6 +16,13 @@ export async function POST(req: NextRequest) {
 
   if (!guest) return Response.json({ error: 'Not found' }, { status: 404 })
 
+  if (attending && Number(actual_size) > guest.party_size) {
+    return Response.json(
+      { error: `You can bring up to ${guest.party_size} guest${guest.party_size > 1 ? 's' : ''}.` },
+      { status: 400 }
+    )
+  }
+
   await supabaseAdmin.from('guests').update({
     status: attending ? 'attending' : 'declined',
     actual_size: attending ? actual_size : 0,
