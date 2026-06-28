@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   description: 'You are cordially invited',
   openGraph: {
     title: "Ali & Sally's Wedding",
-    description: 'You are cordially invited — please RSVP',
+    description: 'You are cordially invited to our wedding',
     images: ['/couple.jpg'],
     type: 'website',
   },
