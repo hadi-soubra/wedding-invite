@@ -1,78 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Guest } from '@/types/guest'
 
 export default function AdminPage() {
-  const [password, setPassword] = useState('')
-  const [authed, setAuthed] = useState(false)
   const [guests, setGuests] = useState<Guest[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchGuests = async (pw: string) => {
-    setLoading(true)
-    setError('')
-    const res = await fetch('/api/admin/guests', {
-      headers: { 'x-admin-password': pw },
-    })
-    if (res.status === 401) {
-      setError('Wrong password')
-      setLoading(false)
-      return
+  useEffect(() => {
+    const fetchGuests = async () => {
+      setLoading(true)
+      setError('')
+      try {
+        const res = await fetch('/api/admin/guests')
+        if (!res.ok) {
+          setError('Failed to load guests')
+          return
+        }
+        setGuests(await res.json())
+      } catch {
+        setError('Failed to load guests')
+      } finally {
+        setLoading(false)
+      }
     }
-    const data = await res.json()
-    setGuests(data)
-    setAuthed(true)
-    setLoading(false)
-  }
-
-  const exportCSV = () => {
-    const header = 'Name,Phone,Status,Party Size,Actual Size,Note,Responded At'
-    const rows = guests.map((g) =>
-      [g.name, g.phone, g.status, g.party_size, g.actual_size, g.note, g.responded_at]
-        .map((v) => `"${v ?? ''}"`)
-        .join(',')
-    )
-    const csv = [header, ...rows].join('\n')
-    const blob = new Blob([csv], { type: 'text/csv' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'guests.csv'
-    a.click()
-  }
+    fetchGuests()
+  }, [])
 
   const attending = guests.filter((g) => g.status === 'attending')
   const declined = guests.filter((g) => g.status === 'declined')
   const pending = guests.filter((g) => g.status === 'pending')
   const totalPeople = attending.reduce((sum, g) => sum + (g.actual_size ?? 0), 0)
-
-  if (!authed) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white p-8 rounded shadow-md w-80">
-          <h1 className="text-xl font-bold mb-6 text-center">Admin Dashboard</h1>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && fetchGuests(password)}
-            className="w-full border rounded px-4 py-2 mb-4"
-          />
-          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-          <button
-            onClick={() => fetchGuests(password)}
-            disabled={loading}
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition-colors disabled:opacity-50"
-          >
-            {loading ? 'Loading…' : 'Login'}
-          </button>
-        </div>
-      </div>
-    )
-  }
 
   const statusBadge = (status: Guest['status']) => {
     if (status === 'attending') return <span className="text-green-600 font-medium">✅ Attending</span>
@@ -85,21 +44,10 @@ export default function AdminPage() {
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">RSVP Dashboard</h1>
-          <div className="flex gap-3">
-            <button
-              onClick={() => fetchGuests(password)}
-              className="border px-4 py-2 rounded text-sm hover:bg-gray-100 transition-colors"
-            >
-              Refresh
-            </button>
-            <button
-              onClick={exportCSV}
-              className="bg-black text-white px-4 py-2 rounded text-sm hover:bg-gray-800 transition-colors"
-            >
-              Export CSV
-            </button>
-          </div>
         </div>
+
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        {loading && <p className="text-gray-400 text-sm mb-4">Loading…</p>}
 
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded shadow p-4 text-center">
