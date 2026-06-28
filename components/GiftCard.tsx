@@ -25,6 +25,12 @@ export default function GiftCard() {
       >
         Whish number
       </p>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/whish.png"
+        alt="Whish"
+        className="mx-auto mt-3 mb-1 h-12 w-auto"
+      />
       <p className="font-serif text-lg text-gray-800 mt-1">71 290 403</p>
     </ContentCard>
   )
