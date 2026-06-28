@@ -73,7 +73,7 @@ export default function AdminPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-100 text-left">
               <tr>
-                {['Name', 'Phone', 'Status', 'Party Size', 'Note', 'Responded At'].map((h) => (
+                {['Name', 'Phone', 'Status', 'Party Size', 'Actual Size', 'Note', 'Responded At'].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium text-gray-600">
                     {h}
                   </th>
@@ -86,8 +86,9 @@ export default function AdminPage() {
                   <td className="px-4 py-3 font-medium">{g.name}</td>
                   <td className="px-4 py-3 text-gray-500">{g.phone ?? '—'}</td>
                   <td className="px-4 py-3">{statusBadge(g.status)}</td>
-                  <td className="px-4 py-3 text-center">
-                    {g.status === 'attending' ? g.actual_size : g.party_size}
+                  <td className="px-4 py-3 text-center">{g.party_size}</td>
+                  <td className="px-4 py-3 text-center font-medium">
+                    {g.status === 'attending' ? (g.actual_size ?? '—') : '—'}
                   </td>
                   <td className="px-4 py-3 text-gray-500 max-w-xs truncate">{g.note ?? '—'}</td>
                   <td className="px-4 py-3 text-gray-400">
