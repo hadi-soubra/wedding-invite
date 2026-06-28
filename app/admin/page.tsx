@@ -32,7 +32,6 @@ export default function AdminPage() {
   const declined = guests.filter((g) => g.status === 'declined')
   const pending = guests.filter((g) => g.status === 'pending')
   const totalPeople = attending.reduce((sum, g) => sum + (g.actual_size ?? 0), 0)
-  const totalInvited = guests.reduce((sum, g) => sum + (g.party_size ?? 0), 0)
 
   const statusBadge = (status: Guest['status']) => {
     if (status === 'attending') return <span className="text-green-600 font-medium">✅ Attending</span>
@@ -52,12 +51,12 @@ export default function AdminPage() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded shadow p-4 text-center">
-            <p className="text-2xl font-bold text-gray-800">{guests.length}</p>
-            <p className="text-sm text-gray-500">👥 Invites — {totalInvited} people</p>
+            <p className="text-2xl font-bold text-green-600">{totalPeople}</p>
+            <p className="text-sm text-gray-500">🎉 Total Attending (people)</p>
           </div>
           <div className="bg-white rounded shadow p-4 text-center">
             <p className="text-2xl font-bold text-green-600">{attending.length}</p>
-            <p className="text-sm text-gray-500">✅ Attending — {totalPeople} people</p>
+            <p className="text-sm text-gray-500">✅ Attending (invites)</p>
           </div>
           <div className="bg-white rounded shadow p-4 text-center">
             <p className="text-2xl font-bold text-red-500">{declined.length}</p>
@@ -73,7 +72,7 @@ export default function AdminPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-100 text-left">
               <tr>
-                {['Name', 'Phone', 'Status', 'Party Size', 'Actual Size', 'Note', 'Responded At'].map((h) => (
+                {['Name', 'Status', 'Party Size', 'Actual Size', 'Note', 'Responded At'].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium text-gray-600">
                     {h}
                   </th>
@@ -84,7 +83,6 @@ export default function AdminPage() {
               {guests.map((g) => (
                 <tr key={g.id} className="border-t hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium">{g.name}</td>
-                  <td className="px-4 py-3 text-gray-500">{g.phone ?? '—'}</td>
                   <td className="px-4 py-3">{statusBadge(g.status)}</td>
                   <td className="px-4 py-3 text-center">{g.party_size}</td>
                   <td className="px-4 py-3 text-center font-medium">

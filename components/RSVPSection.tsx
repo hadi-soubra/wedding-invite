@@ -89,18 +89,19 @@ export default function RSVPSection({ guest: initialGuest }: RSVPSectionProps) {
           </div>
         ) : (
           <div className="space-y-6 text-left">
-            <p className="text-sm text-white/60 text-center tracking-widest">
-              Please reply before Sunday, July 26, 2026
+            <p dir="rtl" className="text-sm text-white/60 text-center" style={{ fontFamily: 'var(--font-amiri)' }}>
+              اتركوا صغاركم في أحلامٍ جميلة، وشاركونا أجمل لحظاتنا.
             </p>
             <p className="text-sm text-white/60 text-center">
               Number of persons: {guest.party_size}
             </p>
 
             <p
-              className="text-2xl italic text-center"
-              style={{ fontFamily: 'var(--font-cormorant)' }}
+              dir="rtl"
+              className="text-2xl text-center"
+              style={{ fontFamily: 'var(--font-amiri)' }}
             >
-              {guest.name}
+              {guest.name_arabic || guest.name}
             </p>
 
             <div>
