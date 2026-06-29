@@ -32,7 +32,7 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
 
     let rafId = 0
     let cancelled = false
-    const SPEED = 0.35 // pixels per frame (~21px/s) — gentle
+    const SPEED = 1.2 // pixels per frame (~72px/s)
 
     const step = () => {
       if (cancelled) return
@@ -54,11 +54,10 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
     window.addEventListener('touchstart', stop, { passive: true })
     window.addEventListener('keydown', stop)
 
-    // Let the fade-in settle before drifting down.
-    const startTimer = setTimeout(() => { rafId = requestAnimationFrame(step) }, 1500)
+    // Start drifting down immediately.
+    rafId = requestAnimationFrame(step)
 
     return () => {
-      clearTimeout(startTimer)
       stop()
     }
   }, [pageState])
