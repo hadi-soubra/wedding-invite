@@ -60,7 +60,7 @@ export default function InvitationCard() {
           style={{ fontFamily: 'var(--font-cormorant)' }}
           dir="ltr"
         >
-          01.08.26
+          08.08.26
         </p>
 
         <p
