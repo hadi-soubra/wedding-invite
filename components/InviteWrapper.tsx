@@ -26,6 +26,43 @@ export default function InviteWrapper({ guest }: InviteWrapperProps) {
     return () => { document.body.style.overflow = '' }
   }, [pageState])
 
+  // Slow auto-scroll once the invitation is open; stops on user interaction.
+  useEffect(() => {
+    if (pageState !== 'open') return
+
+    let rafId = 0
+    let cancelled = false
+    const SPEED = 0.35 // pixels per frame (~21px/s) — gentle
+
+    const step = () => {
+      if (cancelled) return
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      if (window.scrollY >= maxScroll - 1) return // reached the bottom
+      window.scrollBy(0, SPEED)
+      rafId = requestAnimationFrame(step)
+    }
+
+    const stop = () => {
+      cancelled = true
+      cancelAnimationFrame(rafId)
+      window.removeEventListener('wheel', stop)
+      window.removeEventListener('touchstart', stop)
+      window.removeEventListener('keydown', stop)
+    }
+
+    window.addEventListener('wheel', stop, { passive: true })
+    window.addEventListener('touchstart', stop, { passive: true })
+    window.addEventListener('keydown', stop)
+
+    // Let the fade-in settle before drifting down.
+    const startTimer = setTimeout(() => { rafId = requestAnimationFrame(step) }, 1500)
+
+    return () => {
+      clearTimeout(startTimer)
+      stop()
+    }
+  }, [pageState])
+
   const handleOpen = () => {
     window.scrollTo(0, 0)
     setPageState('transitioning')

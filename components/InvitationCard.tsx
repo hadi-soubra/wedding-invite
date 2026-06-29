@@ -10,7 +10,7 @@ export default function InvitationCard() {
   const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
-    const target = new Date('2026-08-01T19:00:00+03:00')
+    const target = new Date('2026-08-08T19:00:00+03:00')
     const update = () => {
       const diff = target.getTime() - Date.now()
       if (diff <= 0) return
@@ -42,7 +42,7 @@ export default function InvitationCard() {
         <div className="flex items-end justify-center gap-4 mb-2">
           <div>
             <p className="text-base text-gray-500">ابننا</p>
-            <p className="text-xl font-bold">علي الهادي</p>
+            <p className="text-xl font-bold">علي</p>
           </div>
           <p className="text-3xl pb-0.5" style={{ fontFamily: 'var(--font-allura)' }}>&amp;</p>
           <div>
