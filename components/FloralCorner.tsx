@@ -27,11 +27,10 @@ export default function FloralCorner({ id, className = '', style }: FloralCorner
         </linearGradient>
       </defs>
 
-      {/* Vines */}
+      {/* Short corner vines */}
       <g stroke={`url(#${gid})`} strokeWidth="1.6" strokeLinecap="round">
-        <path d="M10 10 C 48 12 80 28 112 64" />
-        <path d="M10 10 C 12 48 28 80 64 112" />
-        <path d="M10 10 C 40 30 60 50 78 78" opacity="0.5" />
+        <path d="M10 10 C 34 14 50 24 62 40" />
+        <path d="M10 10 C 14 34 24 50 40 62" />
       </g>
 
       <g fill={`url(#${gid})`}>
@@ -45,17 +44,9 @@ export default function FloralCorner({ id, className = '', style }: FloralCorner
           <circle r="3" fill="#fff7d6" />
         </g>
 
-        {/* Leaves along the upper vine */}
-        <path d="M0 0 C 9 -7 19 -7 25 0 C 19 7 9 7 0 0 Z" transform="translate(58 22) rotate(20)" />
-        <path d="M0 0 C 8 -6 17 -6 22 0 C 17 6 8 6 0 0 Z" transform="translate(90 44) rotate(38)" />
-
-        {/* Leaves along the left vine */}
-        <path d="M0 0 C 9 -7 19 -7 25 0 C 19 7 9 7 0 0 Z" transform="translate(22 58) rotate(70)" />
-        <path d="M0 0 C 8 -6 17 -6 22 0 C 17 6 8 6 0 0 Z" transform="translate(44 90) rotate(52)" />
-
-        {/* Buds at the vine tips */}
-        <circle cx="112" cy="64" r="3.1" />
-        <circle cx="64" cy="112" r="3.1" />
+        {/* A leaf on each vine, close to the corner */}
+        <path d="M0 0 C 9 -7 19 -7 25 0 C 19 7 9 7 0 0 Z" transform="translate(50 26) rotate(28)" />
+        <path d="M0 0 C 9 -7 19 -7 25 0 C 19 7 9 7 0 0 Z" transform="translate(26 50) rotate(62)" />
       </g>
     </svg>
   )
