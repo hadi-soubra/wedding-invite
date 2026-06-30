@@ -7,7 +7,7 @@ interface PhotoSectionProps {
 
 export default function PhotoSection({
   image = '/couple.jpg',
-  bottomColor = '#efefef',
+  bottomColor = '#f5f1e8',
 }: PhotoSectionProps) {
   return (
     <div className="w-full relative overflow-hidden">
@@ -30,7 +30,7 @@ export default function PhotoSection({
       <div className="absolute inset-0 z-20 pointer-events-none" style={{ background: 'rgba(0,0,0,0.1)' }} />
       <div
         className="absolute inset-x-0 top-0 z-20 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, #efefef, transparent)' }}
+        style={{ background: 'linear-gradient(to bottom, #f5f1e8, transparent)' }}
       />
       <div
         className="absolute inset-x-0 bottom-0 z-20 h-32 pointer-events-none"
