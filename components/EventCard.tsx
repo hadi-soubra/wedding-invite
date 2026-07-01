@@ -8,7 +8,7 @@ interface EventCardProps {
 const events = {
   ceremony: {
     title: 'Wedding Ceremony',
-    time: '07:00 PM',
+    time: '08:00 PM',
     timezone: 'BEIRUT TIME',
     venue: "Lo'r Venue",
     city: 'Rmeish',
