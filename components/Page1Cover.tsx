@@ -25,12 +25,11 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
         style={{ opacity: isTransitioning ? 0 : 1 }}
         dir="rtl"
       >
-        <p
-          className="text-3xl font-bold tracking-widest"
-          style={{ fontFamily: 'var(--font-amiri)' }}
-        >
-          بسم الله الرحمن الرحيم
-        </p>
+        <img
+          src="/basmala.png"
+          alt="بسم الله الرحمن الرحيم"
+          className="w-64 max-w-full h-auto"
+        />
 
         <div className="text-white/40 text-2xl select-none">✦</div>
 
