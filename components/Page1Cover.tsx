@@ -31,8 +31,6 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
           className="w-64 max-w-full h-auto"
         />
 
-        <div className="text-white/40 text-2xl select-none">✦</div>
-
         <p
           className="text-sm leading-loose max-w-xs text-center opacity-90"
           style={{ fontFamily: 'var(--font-amiri)' }}
@@ -43,8 +41,6 @@ export default function Page1Cover({ onOpen, isTransitioning = false }: Page1Cov
           <br />
           إن في ذلك لآيات لقوم يتفكرون
         </p>
-
-        <div className="text-white/40 text-2xl select-none">✦</div>
 
         <div className="flex flex-col items-center gap-2">
           <div className="animate-bounce flex flex-row items-center gap-2 text-white/40 text-xl select-none">
