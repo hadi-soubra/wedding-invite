@@ -6,7 +6,7 @@ export default function PlugSection() {
         style={{ fontFamily: 'var(--font-amiri)' }}
         dir="rtl"
       >
-        أعجبتك هذه الدعوة الرقمية؟ تواصل معنا على
+        أعجبتك هذه الدعوة؟ تواصل معنا على
       </p>
       <p className="text-white/60 text-sm mb-3" style={{ fontFamily: 'var(--font-cormorant)' }}>
         Liked this digital invitation? Message us at
